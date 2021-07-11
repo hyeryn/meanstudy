@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 
 const config = require('./config/key');
 const {User} = require('./models/User');
+const {auth} = require('./middleware/auth')
 
 app.use(bodyParser.urlencoded({urlencoded: true}));
 app.use(bodyParser.json());
@@ -22,7 +23,7 @@ app.get('/', (req, res)=>{
     res.send('hello 헤링이야')
 })
 
-app.post('/register',(req,res)=>{
+app.post('/api/users/register',(req,res)=>{
     // client에서 보내는 회원가입 정보들을 받아와서 데이터베이스에 저장
     const user = new User(req.body)
 
@@ -34,7 +35,7 @@ app.post('/register',(req,res)=>{
     })
 })
 
-app.post('/login', (req, res)=>{
+app.post('/api/users/login', (req, res)=>{
     // 요청된 이메일을 데이터베이스에 있는지 찾음
     User.findOne({email: req.body.email}, (err, user)=>{
         if(!user){
@@ -59,6 +60,29 @@ app.post('/login', (req, res)=>{
             })
         })
     })
+})
+
+app.get('/api/users/auth', auth , (req,res)=>{
+    // auth이 true면 미들웨어가 여기까지 통과 가능
+    res.status(200).json({
+        _id: req.user._id,
+        isAdmin: req.user.role === 0 ? false : true,
+        isAuth : true,
+        email: req.user.email,
+        name: req.user.name,
+        role: req.user.role,
+        image: req.user.image
+    })
+})
+
+app.get('/api/users/logout',auth,(req, res)=>{
+    User.findOneAndUpdate({_id:req.user._id},
+        {token: ""}, (err, user)=>{
+            if(err) return res.json({sucess:false, err})
+            return res.status(200).send({
+                sucess:true
+            })
+        })
 })
 
 app.listen(port, () => console.log(`example ${port}`))
