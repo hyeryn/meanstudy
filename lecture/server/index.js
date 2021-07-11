@@ -23,6 +23,10 @@ app.get('/', (req, res)=>{
     res.send('hello 헤링이야')
 })
 
+app.get('/api/hello',(req,res)=>{
+    res.send("안녕하세요 ~")
+})
+
 app.post('/api/users/register',(req,res)=>{
     // client에서 보내는 회원가입 정보들을 받아와서 데이터베이스에 저장
     const user = new User(req.body)
@@ -70,6 +74,7 @@ app.get('/api/users/auth', auth , (req,res)=>{
         isAuth : true,
         email: req.user.email,
         name: req.user.name,
+        lastname: req.user.lastname,
         role: req.user.role,
         image: req.user.image
     })

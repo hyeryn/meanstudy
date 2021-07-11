@@ -2,5 +2,5 @@
 /package-lock.json
 /package.json
 /lecture/config/dev.js 
-/lecture/package.json
-/lecture/package-lock.json
+/lecture/server/package.json
+/lecture/server/package-lock.json
