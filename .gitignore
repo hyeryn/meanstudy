@@ -1,3 +1,6 @@
 /node_modules
 /package-lock.json
 /package.json
+/lecture/config/dev.js 
+/lecture/package.json
+/lecture/package-lock.json
