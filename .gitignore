@@ -5,3 +5,6 @@
 /lecture/package.json
 /lecture/package-lock.json
 /lecture/node_modules
+/web_memo/node_modules
+/web_memo/package.json
+/web_memo/package-lock.json
