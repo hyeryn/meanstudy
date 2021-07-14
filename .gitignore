@@ -8,3 +8,6 @@
 /web_memo/node_modules
 /web_memo/package.json
 /web_memo/package-lock.json
+/angular/node_modules
+/angular/package.json
+/angular/package-lock.json
