@@ -24,19 +24,19 @@ export class WelcomeMsgComponent implements AfterViewInit{
   }
   title = 'ng-welcome-msg-app';
 
-  onKeyUp(name: string){
-    this.valid = name.length > 0;
-  }
+  // onKeyUp(name: string){
+  //   this.valid = name.length > 0;
+  // }
 
-  setName(name: string){
-    this.userName = name;
-  }
+  // setName(name: string){
+  //   this.userName = name;
+  // }
 
   onChange(){
     this.valid = this.userName.length >0 ;
   }
 
   showWelcomeMsg(){
-    this.welcomeMsg = this.i18nSupporter.getWelcomeMsgByCode(this.userName,'ko');
+    this.welcomeMsg = this.i18nSupporter.getWelcomeMsgByCode(this.userName);
   }
 }

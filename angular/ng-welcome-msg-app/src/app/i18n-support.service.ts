@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class I18nSupportService {
+  langCode = 'ko';
   private welcomeMsg: any;
 
   constructor() { 
@@ -16,8 +17,8 @@ export class I18nSupportService {
     }
   }
 
-  getWelcomeMsgByCode(userName: string, code: string){
-    const helloMsg = this.welcomeMsg[code];
+  getWelcomeMsgByCode(userName: string){
+    const helloMsg = this.welcomeMsg[this.langCode];
     return `${helloMsg}, ${userName}!`
   }
 }

@@ -7,6 +7,7 @@ import { WelcomeMsgComponent } from './welcome-msg/welcome-msg.component';
 import { LangSelectorComponent } from './lang-selector/lang-selector.component';
 
 import { I18nSupportService } from './i18n-support.service';
+import { FormsModule, COMPOSITION_BUFFER_MODE } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,9 +17,10 @@ import { I18nSupportService } from './i18n-support.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
-  providers: [I18nSupportService],
+  providers: [I18nSupportService, {provide: COMPOSITION_BUFFER_MODE, useValue: false}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
